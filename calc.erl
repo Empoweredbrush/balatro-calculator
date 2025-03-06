@@ -1,5 +1,5 @@
 -module(calc).
--export([main/0, pair/0]).
+-export([main/0,high_card/0, pair/0]).
 
 main() ->
     io:format("Hello and welcome to the Balatro Calulator! The goal is simple, unsure what your score is based on your hand? No worries we got it covered!"),
@@ -9,13 +9,39 @@ main() ->
 
     Answer = io:get_line(""),
 
+    if Answer =:= "0" ->
+        high_card()
+    end,
+    
     if Answer =:= "1" ->
         pair()
     end.
     
 
+high_card() ->
+    io:format("To start, what is the card you played? (Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
+
+    Card = io:get_line(""),
+
+    High_Chips = 5,
+
+    High_mult = 1,
+
+    Total = (Card + High_Chips) * High_mult,
+    
+    io:format("Chips amount: ~p", [Total]).
+
 
 pair() ->
     io:format("To start, what is the card you played? (Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
 
-    Card = io:get_line("").
+    Card = io:get_line(""),
+
+    Pair_Chips = 10,
+
+    Pair_Mult = 2,
+
+    Total = (Card + Pair_Chips) * Pair_Mult,
+
+    io:format("Chip amount: ~p", [Total]).
+
