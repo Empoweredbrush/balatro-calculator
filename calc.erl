@@ -1,47 +1,109 @@
 -module(calc).
--export([main/0,high_card/0, pair/0]).
+-export([main/0, high_card/0, pair/0, two_pair/0, three_of_a_kind/0, straight/0]).
 
 main() ->
-    io:format("Hello and welcome to the Balatro Calulator! The goal is simple, unsure what your score is based on your hand? No worries we got it covered!"),
+    io:format("Hello and welcome to the Balatro Calulator! ~nThe goal is simple, unsure what your score is based on your hand? No worries we got it covered!"),
 
-    io:format("To begin, what hand are you trying to use? ()"),
-    io:format("Options: 0 - High card, 1 - pair, 2 - two pair, 3 - three of a kind, 4 - straight, 5 - flush, 6 - full house, 7 - four of a kind, 8 - straight flush, 9 - royal flush, 10 - five of a kind, 11 - flush house, 12 - flush five"),
+    io:format("To begin, what hand are you trying to use?~n"),
+    io:format("Options: ~n1 - High card, ~n2 - pair, ~n3 - two pair, ~n4 - three of a kind, ~n5 - straight, ~n6 - flush, ~n7 - full house, ~n8 - four of a kind, ~n9 - straight flush, ~n10 - royal flush, ~n11 - five of a kind, ~n12 - flush house, ~n13 - flush five~n"),
 
-    Answer = io:get_line(""),
+    {Answer, _} = string:to_integer(io:get_line("")),
 
-    if Answer =:= "0" ->
-        high_card()
-    end,
-    
-    if Answer =:= "1" ->
-        pair()
+    case Answer of
+      1 -> high_card();
+      2 -> pair();
+      3 -> two_pair();
+      4 -> three_of_a_kind();
+      5 -> straight()
     end.
     
 
 high_card() ->
-    io:format("To start, what is the card you played? (Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
+    io:format("To start your high card calculation, what is the card you played? ~n(Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
 
-    Card = io:get_line(""),
+    {Card, _} = string:to_integer(io:get_line("")),
 
     High_Chips = 5,
 
     High_mult = 1,
 
-    Total = (Card + High_Chips) * High_mult,
+    Add_Total = Card + High_Chips,
+
+    Total = Add_Total * High_mult,
     
-    io:format("Chips amount: ~p", [Total]).
+    io:format("Chips amount: ~p~n", [Total]).
 
 
 pair() ->
-    io:format("To start, what is the card you played? (Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
+    io:format("To start you pair calculation, what is the card you played? ~n(Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
 
-    Card = io:get_line(""),
+    {Card, _} = string:to_integer(io:get_line("")),
 
     Pair_Chips = 10,
 
     Pair_Mult = 2,
 
-    Total = (Card + Pair_Chips) * Pair_Mult,
+    Add_Total = Card + Card + Pair_Chips,
+
+    Total = Add_Total  * Pair_Mult,
 
     io:format("Chip amount: ~p", [Total]).
 
+two_pair() ->
+    io:format("To start you two pair calculation, what is the first pair in the hand? ~n(Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)~n"),
+
+    {First_Card, _} = string:to_integer(io:get_line("")),
+
+    io:format("What is the second pair?~n"),
+
+    {Second_Card, _} = string:to_integer(io:get_line("")),
+
+    Two_Pair_Chips = 20,
+
+    Two_Pair_Mult = 2,
+
+    Total = ((First_Card * 2) + (Second_Card * 2) + Two_Pair_Chips) * Two_Pair_Mult,
+
+    io:format("Chip amount: ~p", [Total]).
+
+three_of_a_kind() ->
+    io:format("To start your three of a kind calculation, what is the card you played? ~n(Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
+
+    {Card, _} = string:to_integer(io:get_line("")),
+
+    Three_Kind_Chips = 30,
+
+    Three_Kind_Mult = 3,
+
+    Total = (((Card * 3) + Three_Kind_Chips) * Three_Kind_Mult),
+
+    io:format("Chip amount: ~p", [Total]).
+
+straight() ->
+    io:format("To start your straight hand calculation, what is the first card you played? ~n(Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
+
+    {Card_1, _} = string:to_integer(io:get_line("")),
+
+    io:format("What is the second card you played? ~n(Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
+
+    {Card_2, _} = string:to_integer(io:get_line("")),
+
+    io:format("What is the third card you played? ~n(Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
+
+    {Card_3, _} = string:to_integer(io:get_line("")),
+
+    io:format("What is the fourth card you played? ~n(Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
+
+    {Card_4, _} = string:to_integer(io:get_line("")),
+
+    io:format("What is the fifth card you played? ~n(Note: use numbers for answers: Ace = 14, King = 13, Queen = 12, Jack = 11)"),
+
+    {Card_5, _} = string:to_integer(io:get_line("")),
+
+    Straight_Chips = 30,
+
+    Straight_Mult = 4,
+
+    Total = ((Card_1 + Card_2 + Card_3 + Card_4 + Card_5 + Straight_Chips) * Straight_Mult),
+
+    io:format("Chip amount: ~p", [Total]).
