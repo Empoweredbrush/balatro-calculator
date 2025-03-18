@@ -110,8 +110,9 @@ calculate_hand(straight_flush) ->
     end.
 
 % Recursive function to sum a list of card values
-sum_cards([]) -> 0;
-sum_cards([H | T]) -> H + sum_cards(T).
+sum_cards(Cards) ->
+    SumFun = fun(X, Acc) -> X + Acc end,
+    lists:foldl(SumFun, 0, Cards). 
 
 % Get a list of card values from user input
 get_card_list() ->
@@ -144,6 +145,6 @@ is_consecutive_helper([A, B | T]) when B =:= A + 1 ->
 is_consecutive_helper(_) -> false.
 
 % Check if all suits in a list are the same (valid flush)
-is_flush([S]) -> true;  % Only one suit means all are the same
-is_flush([S, S | T]) -> is_flush([S | T]);  % Recursively check suits
-is_flush(_) -> false.
+is_flush([FirstSuit | RestSuits]) ->
+    MatchSuitFun = fun(S) -> S =:= FirstSuit end,
+    lists:all(MatchSuitFun, RestSuits).
