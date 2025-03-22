@@ -1,8 +1,8 @@
 # CSE 310 - Sprint Time Log
 
-Name:
+Name:Shon ashby
 
-Sprint #:
+Sprint #: 4
 
 ## Instructions
 
@@ -26,12 +26,13 @@ The expected minimum amount of time each Sprint for each category is as follows:
 
 |Date      |Start Time|Category|Description                                 |Total Minutes|
 |----------|----------|:------:|--------------------------------------------|:-----------:|
-|          |          |        |                                            |             |
-|          |          |        |                                            |             |
-|          |          |        |                                            |             |
-|          |          |        |                                            |             |
-|          |          |        |                                            |             |
-|          |          |        |                                            |             |
+|    3/4      |   12:45       |   TP     |                                            |       2:00      |
+|     3/4    |     12:45     |    MTG    |                                            |       2:00      |
+|      3/6    |    12:45      |    TP    |                                            |       2:00      |
+|     3/6     |     12:45     |    MTG    |                                            |       2:00      |
+|      3/7    |     5:30     |    IM    |                                            |       3:30      |
+|      3/11    |    5:30      |    IM    |                                            |       3:30      |
+|      3/117    |    5:30      |    IM    |                                            |       3:00      |
 
 _Note: Add more rows as needed._
 
@@ -39,7 +40,7 @@ _Note: Add more rows as needed._
 
 |Categroy                       |Total Time (Hours:Minutes)|
 |-------------------------------|:------------------------:|
-|IM - Individual Module         |                          |
-|TP - Team Project              |                          |
-|MTG - Class Meetings           |                          |
-|**TOTAL**                      |                          |
+|IM - Individual Module         |            10              |
+|TP - Team Project              |             4             |
+|MTG - Class Meetings           |             4             |
+|**TOTAL**                      |             18             |
