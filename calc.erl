@@ -8,24 +8,24 @@ main() ->
     io:format("1 - High card, 2 - Pair, 3 - Two Pair, 4 - Three of a Kind, 5 - Straight,~n"),
     io:format("6 - Flush, 7 - Full House, 8 - Four of a Kind, 9 - Straight Flush~n"),
     
-    {Answer, _} = string:to_integer(io:get_line("")),
-    
-    HandType = case Answer of
-        1 -> high_card;
-        2 -> pair;
-        3 -> two_pair;
-        4 -> three_of_a_kind;
-        5 -> straight;
-        6 -> flush;
-        7 -> full_house;
-        8 -> four_of_a_kind;
-        9 -> straight_flush;
-        _ -> invalid
-    end,
-    
-    case HandType of
-        invalid -> io:format("Invalid choice.~n");
-        _ -> calculate_hand(HandType)
+    Input = io:get_line(""),
+    case string:to_integer(string:trim(Input)) of
+        {Answer, _} when Answer >= 1, Answer =< 9 ->
+            HandType = case Answer of
+                1 -> high_card;
+                2 -> pair;
+                3 -> two_pair;
+                4 -> three_of_a_kind;
+                5 -> straight;
+                6 -> flush;
+                7 -> full_house;
+                8 -> four_of_a_kind;
+                9 -> straight_flush
+            end,
+            calculate_hand(HandType);
+        _ ->
+            io:format("Invalid choice. Please enter a number between 1 and 9.~n"),
+            main()
     end.
 
 % Calculate chip gain for different hands
